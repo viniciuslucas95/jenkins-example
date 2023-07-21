@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        dotnet 'dotnet'
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -10,23 +14,14 @@ pipeline {
 
         stage('Build') {
             steps {
-                withDotNet {
-                    sh 'dotnet build "Jenkins Example/Jenkins Example.csproj"'
-                }
+                sh 'dotnet build "Jenkins Example/Jenkins Example.csproj"'
             }
         }
 
         stage('Test') {
             steps {
-                withDotNet {
-                    sh 'dotnet test "Jenkins Example/Jenkins Example.csproj"'
-                }
+                sh 'dotnet build "Jenkins Example/Jenkins Example.csproj"'
             }
         }
     }
-}
-
-def withDotNet(body) {
-    tool 'dotnet'
-    body()
 }
