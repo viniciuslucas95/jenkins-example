@@ -25,3 +25,8 @@ pipeline {
         }
     }
 }
+
+def withDotNet(body) {
+    tool 'dotnet'
+    body()
+}
