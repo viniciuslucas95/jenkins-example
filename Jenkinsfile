@@ -10,15 +10,19 @@ pipeline {
 
         stage('Build') {
             steps {
-                def dotnetTool = tool 'dotnet'
-                sh "${dotnetTool}/dotnet build \"Jenkins Example/Jenkins Example.csproj\""
+                script {
+                    def dotnetTool = tool 'dotnet'
+                    sh "${dotnetTool}/dotnet build \"Jenkins Example/Jenkins Example.csproj\""
+                }
             }
         }
 
         stage('Test') {
             steps {
-                def dotnetTool = tool 'dotnet'
-                sh "${dotnetTool}/dotnet build \"Jenkins Example/Jenkins Example.csproj\""
+                script {
+                    def dotnetTool = tool 'dotnet'
+                    sh "${dotnetTool}/dotnet build \"Jenkins Example/Jenkins Example.csproj\""
+                }
             }
         }
     }
