@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        dotnet '.NET SDK'
+        dotnetsdk '.NET SDK'
     }
 
     stages {
