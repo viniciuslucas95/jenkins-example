@@ -14,7 +14,9 @@ services:
       - jenkins-example
 
   jenkins:
-    image: jenkins/jenkins:lts
+    build:
+      context: .
+      dockerfile: Dockerfile.Jenkins
     container_name: jenkins
     restart: always
     ports:
