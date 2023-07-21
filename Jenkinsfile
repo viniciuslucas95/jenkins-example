@@ -8,8 +8,8 @@ pipeline {
     stages {
         stage('Install .NET SDK dependencies') {
             steps {
-                sh 'sudo apt-get update'
-                sh 'sudo apt-get install -y libicu-dev'
+                sh 'apt-get update'
+                sh 'apt-get install -y libicu-dev'
             }
         }
 
