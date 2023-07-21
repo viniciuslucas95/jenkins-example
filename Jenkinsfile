@@ -1,18 +1,11 @@
 pipeline {
-    agent any
-
-    tools {
-        dotnetsdk '.NET SDK'
+    agent {
+        docker {
+            image 'mcr.microsoft.com/dotnet/sdk:6.0'
+        }
     }
 
     stages {
-        stage('Install .NET SDK dependencies') {
-            steps {
-                sh 'apt-get update'
-                sh 'apt-get install -y libicu-dev'
-            }
-        }
-
         stage('Checkout') {
             steps {
                 checkout scm
