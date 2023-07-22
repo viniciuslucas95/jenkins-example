@@ -16,6 +16,7 @@ pipeline {
 
         stage('Test') {
             steps {
+                sh 'dotnet restore "Jenkins Example/Jenkins Example.csproj"'
                 sh 'dotnet test "Jenkins Example/Jenkins Example.csproj"'
             }
         }
