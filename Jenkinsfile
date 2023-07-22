@@ -23,7 +23,20 @@ pipeline {
 
         stage('Build image') {
             steps {
-                sh 'docker build -t viniciuslucas95/jenkins-example:${env.BUILD_ID} -f "Jenkins Example/Dockerfile" "Jenkins Example"'
+                script {
+                    sh 'docker build -t viniciuslucas95/jenkins-example:${env.BUILD_ID} -f "Jenkins Example/Dockerfile" "Jenkins Example"'
+                }
+            }
+        }
+
+        stage('Push image') {
+            steps {
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'docker-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                        sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
+                        sh "docker push viniciuslucas95/jenkinsexample:${env.BUILD_ID}"
+                    }
+                }
             }
         }
     }
