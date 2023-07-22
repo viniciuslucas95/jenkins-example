@@ -1,17 +1,6 @@
 version: '3.4'
 
 services:
-  api:
-    build:
-      context: .
-      dockerfile: Jenkins Example/Dockerfile
-    container_name: api
-    restart: always
-    ports:
-      - "5000:80"
-    networks:
-      - jenkins-example
-
   jenkins:
     build:
       context: .
@@ -23,8 +12,3 @@ services:
       - "50000:50000"
     volumes:
       - ./jenkins_home:/var/jenkins_home
-    networks:
-      - jenkins-example
-
-networks:
-  jenkins-example:

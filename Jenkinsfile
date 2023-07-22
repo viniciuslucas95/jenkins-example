@@ -20,5 +20,11 @@ pipeline {
                 sh 'dotnet test "Jenkins Example/Jenkins Example.csproj"'
             }
         }
+
+        stage('Build image') {
+            steps {
+                dockerimage = docker.build("viniciuslucas95/jenkins-example:${env.BUILD_ID}", "-f ./Jenkins Example/Dockerfile", "./Jenkins Example")
+            }
+        }
     }
 }
