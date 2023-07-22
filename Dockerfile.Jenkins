@@ -1,17 +1,17 @@
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS dotnet-sdk
+
 FROM jenkins/jenkins:lts
 
 USER root
 
+COPY --from=dotnet-sdk /usr/share/dotnet /usr/share/dotnet
+
+RUN chown -R jenkins:jenkins /usr/share/dotnet
+
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-        ca-certificates \
-        apt-transport-https \
-        gnupg \
-        unzip \
-    && wget -q https://packages.microsoft.com/config/debian/$(lsb_release -rs)/packages-microsoft-prod.deb -O packages-microsoft-prod.deb \
-    && dpkg -i packages-microsoft-prod.deb \
-    && apt-get update \
-    && apt-get install -y --no-install-recommends \
-        msbuild
+    && apt-get install -y libicu-dev
+
+ENV DOTNET_ROOT /usr/share/dotnet
+ENV PATH $PATH:$DOTNET_ROOT
 
 USER jenkins
