@@ -16,8 +16,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'dotnet add "Jenkins Example" package xunit.runner.console'
-                sh 'dotnet restore "Jenkins Example/Jenkins Example.csproj"'
+                sh 'dotnet add "Jenkins Example" package Microsoft.NET.Test.Sdk'
                 sh 'dotnet test "Jenkins Example/Jenkins Example.csproj"'
             }
         }
