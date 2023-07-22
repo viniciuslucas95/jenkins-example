@@ -11,6 +11,6 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.MapGet("/", () => "Hello, World!");
+app.MapGet("/", () => "Testing CI/CD");
 
 app.Run();
