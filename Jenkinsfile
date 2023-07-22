@@ -24,7 +24,11 @@ pipeline {
         stage('Build image') {
             steps {
                 script {
-                    dockerimage = docker.build("viniciuslucas95/jenkins-example:${env.BUILD_ID}", "-f ./Jenkins Example/Dockerfile", "./Jenkins Example")
+                    def dockerImage = docker.build(
+                        "viniciuslucas95/jenkins-example:${env.BUILD_ID}",
+                        "-f ./Jenkins Example/Dockerfile",
+                        "./Jenkins Example"
+                    )
                 }
             }
         }
