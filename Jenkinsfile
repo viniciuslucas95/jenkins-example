@@ -24,7 +24,7 @@ pipeline {
         stage('Build image') {
             steps {
                 script {
-                    sh 'docker build -t viniciuslucas95/jenkins-example:latest -f "Jenkins Example/Dockerfile" "Jenkins Example"'
+                    sh 'docker build -t viniciuslucas95/jenkins-example -f "Jenkins Example/Dockerfile" "Jenkins Example"'
                 }
             }
         }
@@ -34,7 +34,7 @@ pipeline {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'docker-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                         sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
-                        sh "docker push viniciuslucas95/jenkinsexample:latest"
+                        sh "docker push viniciuslucas95/jenkins-example"
                     }
                 }
             }
