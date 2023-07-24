@@ -24,7 +24,7 @@ pipeline {
         stage('Build image') {
             steps {
                 script {
-                    sh 'docker build -t viniciuslucas95/jenkins-example -f "Jenkins Example/Dockerfile" "Jenkins Example"'
+                    sh 'docker build --no-cache -t viniciuslucas95/jenkins-example -f "Jenkins Example/Dockerfile" "Jenkins Example"'
                 }
             }
         }
