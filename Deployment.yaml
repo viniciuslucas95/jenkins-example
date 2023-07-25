@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: dotnet-api
-          image: viniciuslucas95/jenkinsexample:latest
+          image: viniciuslucas95/jenkins-example:latest
           ports:
             - containerPort: 80
